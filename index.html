@@ -5,58 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>BMI Calculator</title>
     <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+
+    <!-- Customize -->
+    <style type="text/tailwindcss">
+        @theme {
+          --color-blue-color: #6D63FF;
+        }
+      </style>
+      <style>
+        td{
+            border: 1px solid #6D63FF;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+      </style>
   </head>
   <body>
-    <section class="w-full h-screen flex items-center justify-center">
+    <section class="w-full flex items-center justify-center">
       <div
-        class="py-12 px-10 mx-auto flex flex-col justify-center gap-5 bg-orange-700 text-white rounded-lg"
+        class="mt-20 py-12 px-10 mx-auto flex flex-col justify-center gap-5 bg-blue-color text-white rounded-lg"
       >
         <h1 class="text-3xl font-bold">BMI Calculator</h1>
         <div class="form">
           <label class="space-y-2" for="height">
-            <h3 class="font-semibold text-xl">Height</h3>
+            <h3 class="font-bold text-xl">Height</h3>
             <input
               id="height"
-              class="w-full bg-gradient-to-b from-red-500 to-orange-200 py-4 pl-5 pr-20 border border-black font-bold rounded-lg"
+              class="w-full bg-white text-blue-color py-4 pl-5 pr-20 border-none font-bold rounded-lg"
               type="text"
               placeholder="In Inch"
             />
           </label>
           <label class="space-y-2" for="weight">
-            <h3 class="font-semibold text-xl mt-4">weight</h3>
+            <h3 class="font-bold text-xl mt-4">Weight</h3>
             <input
               id="weight"
-              class="w-full bg-gradient-to-b from-red-500 to-orange-200 py-4 pl-5 pr-20 border border-black font-bold rounded-lg"
+              class="w-full bg-white text-blue-color py-4 pl-5 pr-20 border-none font-bold rounded-lg"
               type="text"
               placeholder="In KG"
             />
           </label>
-          <button id="btn" class="mt-4 py-3 font-bold rounded-lg px-10 bg-white text-orange-600 cursor-pointer
+          <button id="btn" class="mt-4 py-3 font-bold rounded-lg px-10 bg-white text-blue-color hover:scale-105 transition-all cursor-pointer
           ">Calculate</button>
+          <button id="clear-btn" class="ml-3 mt-4 py-3 font-bold rounded-lg px-10 bg-white text-blue-color hover:scale-105 transition-all cursor-pointer
+          ">Clear</button>
         </div>
         <!-- Score Area -->
-        <div class="space-y-3">
-          <h1 class="font-bold text-xl">Score</h1>
-          <div class="bg-white inline-block p-3 px-5 rounded-lg text-orange-700">
-            <h2 id="score" class="font-semibold text-2xl">00.00</h2>
+        <div class="space-y-3 bg-white text-blue-color p-5 rounded-md">
+          <h1 class="font-bold text-2xl">Score : </h1>
+          <div id="score-area" class="bg-gray-200 inline-block p-5 px-8 rounded-lg text-blue-color">
+            <h2 id="score" class="font-semibold text-3xl">00.00</h2>
           </div>
+        </div>
+        <!-- Guideline Are -->
+        <div id="guideline" class="bg-white text-blue-color p-5 rounded-lg hidden">
+            <h1 class="font-bold text-3xl">BMI Guideline</h1>
+            <table class="border mt-3 w-full">
+                <thead class="bg-blue-color text-white">
+                    <td>BMI Range</td>
+                    <td>Category</td>
+                </thead>
+                <tr class="bg-yellow-300 text-black">
+                    <td>Below 18.5</td>
+                    <td>Underweight</td>
+                </tr>
+                <tr class="bg-green-500 text-white">
+                    <td>18.5 – 24.9</td>
+                    <td>Normal weight</td>
+                </tr>
+                <tr class="bg-red-500 text-white">
+                    <td>25.0 – 29.9</td>
+                    <td>Overweight</td>
+                </tr>
+            </table>
+	
         </div>
       </div>
     </section>
-    <script>
-      const height = document.getElementById('height');
-      const weight = document.getElementById('weight');
-
-      const btn = document.getElementById('btn');
-      const score = document.getElementById('score');
-      btn.addEventListener('click',function(){
-        let heightValue = height.value*0.0254;
-        const heightSqr = heightValue * heightValue
-        let weightValue = weight.value;
-        const result = weightValue/heightSqr;
-        score.innerText = result.toFixed(2);
-      });
-    </script>
     <script src="app.js"></script>
   </body>
 </html>
