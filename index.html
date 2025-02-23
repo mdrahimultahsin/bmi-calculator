@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMI Calculator</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  </head>
+  <body>
+    <section class="w-full h-screen flex items-center justify-center">
+      <div
+        class="py-12 px-10 mx-auto flex flex-col justify-center gap-5 bg-orange-700 text-white rounded-lg"
+      >
+        <h1 class="text-3xl font-bold">BMI Calculator</h1>
+        <div class="form">
+          <label class="space-y-2" for="height">
+            <h3 class="font-semibold text-xl">Height</h3>
+            <input
+              id="height"
+              class="w-full bg-gradient-to-b from-red-500 to-orange-200 py-4 pl-5 pr-20 border border-black font-bold rounded-lg"
+              type="text"
+              placeholder="In Inch"
+            />
+          </label>
+          <label class="space-y-2" for="weight">
+            <h3 class="font-semibold text-xl mt-4">weight</h3>
+            <input
+              id="weight"
+              class="w-full bg-gradient-to-b from-red-500 to-orange-200 py-4 pl-5 pr-20 border border-black font-bold rounded-lg"
+              type="text"
+              placeholder="In KG"
+            />
+          </label>
+          <button id="btn" class="mt-4 py-3 font-bold rounded-lg px-10 bg-white text-orange-600 cursor-pointer
+          ">Calculate</button>
+        </div>
+        <!-- Score Area -->
+        <div class="space-y-3">
+          <h1 class="font-bold text-xl">Score</h1>
+          <div class="bg-white inline-block p-3 px-5 rounded-lg text-orange-700">
+            <h2 id="score" class="font-semibold text-2xl">00.00</h2>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      const height = document.getElementById('height');
+      const weight = document.getElementById('weight');
+
+      const btn = document.getElementById('btn');
+      const score = document.getElementById('score');
+      btn.addEventListener('click',function(){
+        let heightValue = height.value*0.0254;
+        const heightSqr = heightValue * heightValue
+        let weightValue = weight.value;
+        const result = weightValue/heightSqr;
+        score.innerText = result.toFixed(2);
+      });
+    </script>
+    <script src="app.js"></script>
+  </body>
+</html>
